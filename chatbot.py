@@ -26,7 +26,7 @@ bot = ChatBot(
         {
             "import_path": "chatterbot.logic.BestMatch",
             "statement_comparison_function": "chatterbot.comparisons.SentimentComparison",
-            "response_selection_method": response_selection.get_random_response,
+            "response_selection_method": response_selection.get_most_frequent_response,
         }
     ],
     database_uri='postgres://xcsyacmkjpkkrn:f10c2235b1293dd3f749cb5be3763f32489ec6d419c010337662c2fc562c7c87@ec2-54-198-252-9.compute-1.amazonaws.com:5432/dcgc2cu84f14a1'
