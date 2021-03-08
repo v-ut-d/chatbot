@@ -40,13 +40,13 @@ async def on_message(message):
             global channel
             channel=message.channel
             await channel.send("なーに？")
-        elif up==1 and message.content == 'AtWakerちゃん、じゃあね！' and channel==client.get_channel(message.channel):
+        elif up==1 and message.content == 'AtWakerちゃん、じゃあね！' and channel==message.channel:
             await channel.send("じゃあね！")
             up=0
         else:
             user_input = message.content
             bot_response = bot.get_response(user_input)
-            if up==1:
+            if up==1 and channel==message.channel:
                 await channel.send(bot_response)
     return
 
