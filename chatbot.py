@@ -34,7 +34,7 @@ async def on_ready():
 @client.event
 async def on_message(message):
     global up
-    if message.author.id!=818061060069261332:
+    if not message.author.bot:
         if message.content == 'AtWakerちゃん！':
             up=1
             global channel
