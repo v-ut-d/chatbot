@@ -22,6 +22,8 @@ bot = ChatBot(
     logic_adapters=[
         {
             "import_path": "chatterbot.logic.BestMatch",
+            'default_response': 'わかんない。',
+            'maximum_similarity_threshold': 0.80
             "statement_comparison_function": "chatterbot.comparisons.JaccardSimilarity",
             "response_selection_method": "chatterbot.response_selection.get_most_frequent_response"
         }
