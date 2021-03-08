@@ -6,7 +6,7 @@ from chatterbot.trainers import ListTrainer
 # Uncomment the following lines to enable verbose logging
 import logging
 import spacy
-nlp = spacy.load("ja_core_news_sm")
+nlp = spacy.load("xx_ent_wiki_sm")
 logging.basicConfig(level=logging.INFO)
 up=0
 TOKEN = os.environ['TOKEN']
