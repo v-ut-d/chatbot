@@ -24,7 +24,7 @@ bot = ChatBot(
         {
             "import_path": "chatterbot.logic.BestMatch",
             "statement_comparison_function": "chatterbot.comparisons.JaccardSimilarity",
-            "response_selection_method": chatterbot.response_selection.get_most_frequent_response(storage=storage_adapter),
+            "response_selection_method": chatterbot.response_selection.get_most_frequent_response(storage='chatterbot.storage.SQLStorageAdapter'),
             'default_response': 'わかんない。',
             'maximum_similarity_threshold': 0.80,
         }
