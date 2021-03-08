@@ -2,4 +2,4 @@ discord.py
 spacy==3.0.0
 https://github.com/explosion/spacy-models/releases/download/xx_ent_wiki_sm-3.0.0/xx_ent_wiki_sm-3.0.0.tar.gz
 git+git://github.com/gunthercox/ChatterBot.git
-https://github.com/gunthercox/ChatterBot/blob/5b0381fa9ab40da980b6a633eff0c9ca61d5bd39/chatterbot@5b0381f#egg=chatterbot
+git+git://github.com/gunthercox/ChatterBot/blob/5b0381fa9ab40da980b6a633eff0c9ca61d5bd39/chatterbot@5b0381f#egg=chatterbot
