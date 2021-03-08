@@ -1,5 +1,4 @@
 discord.py
-urllib
 pyyaml
 psycopg2
 spacy==3.0.0

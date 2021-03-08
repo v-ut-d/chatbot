@@ -8,7 +8,6 @@ import os
 import logging
 from chatterbot.trainers import ChatterBotCorpusTrainer
 import psycopg2
-import urlparse
 from urllib.parse import urlparse
 
 result = urlparse(os.environ['DATABASE_URL'])
