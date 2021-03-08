@@ -37,7 +37,10 @@ bot = ChatBot(
 trainer = ChatterBotCorpusTrainer(bot)
 
 trainer.train(
-    "chatterbot.corpus.japanese",
+    "chatterbot.corpus.japanese"
+)
+
+trainer.train(
     "chatterbot.corpus.english"
 )
 
