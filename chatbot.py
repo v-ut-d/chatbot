@@ -6,6 +6,8 @@ import os
 
 # Uncomment the following lines to enable verbose logging
 import logging
+from chatterbot.trainers import ChatterBotCorpusTrainer
+
 # import spacy
 # nlp = spacy.load("xx_sent_ud_sm")
 logging.basicConfig(level=logging.INFO)
@@ -32,7 +34,12 @@ bot = ChatBot(
     database_uri='postgres://xcsyacmkjpkkrn:f10c2235b1293dd3f749cb5be3763f32489ec6d419c010337662c2fc562c7c87@ec2-54-198-252-9.compute-1.amazonaws.com:5432/dcgc2cu84f14a1'
 )
 
+trainer = ChatterBotCorpusTrainer(bot)
 
+trainer.train(
+    "chatterbot.corpus.japanese"
+    "chatterbot.corpus.english"
+)
 
 @client.event
 async def on_ready():
