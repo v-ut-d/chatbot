@@ -5,7 +5,7 @@ import os
 # Uncomment the following lines to enable verbose logging
 import logging
 import spacy
-nlp = spacy.load("xx_ent_wiki_sm")
+nlp = spacy.load("xx_sent_ud_sm")
 logging.basicConfig(level=logging.INFO)
 up=0
 TOKEN = os.environ['TOKEN']
