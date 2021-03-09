@@ -57,7 +57,7 @@ async def run_blocking(blocking_func: typing.Callable, *args, **kwargs) -> typin
     return await client.loop.run_in_executor(None, func)
 
 async def learn_and_send(channel,input):
-    z=bot.get_response(input)
+    z=run_blocking(bot.get_response,input)
     await channel.send(z)
     return
 # trainer = ChatterBotCorpusTrainer(bot)
