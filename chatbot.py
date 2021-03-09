@@ -56,7 +56,7 @@ async def run_blocking(blocking_func: typing.Callable, *args, **kwargs) -> typin
     func = functools.partial(blocking_func, *args, **kwargs) # `run_in_executor` doesn't support kwargs, `functools.partial` does
     return await client.loop.run_in_executor(None, func)
 
-def learn_and_send(channel,input):
+async def learn_and_send(channel,input):
     z=bot.get_response(user_input)
     await channel.send(z)
     return
@@ -86,7 +86,7 @@ async def on_message(message):
         else:
             user_input = message.content
             if up==1 and channel==message.channel:
-                await run_blocking(learn_and_send,channel,user_input)
+                await learn_and_send(channel,user_input)
             else:
                 await run_blocking(bot.get_response,user_input)
     return
