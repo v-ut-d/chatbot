@@ -49,6 +49,15 @@ bot = ChatBot(
     database_uri='postgres://xcsyacmkjpkkrn:f10c2235b1293dd3f749cb5be3763f32489ec6d419c010337662c2fc562c7c87@ec2-54-198-252-9.compute-1.amazonaws.com:5432/dcgc2cu84f14a1'
 )
 
+async def run_blocking(blocking_func: typing.Callable, *args, **kwargs) -> typing.Any:
+    """Runs a blocking function in a non-blocking way"""
+    func = functools.partial(blocking_func, *args, **kwargs) # `run_in_executor` doesn't support kwargs, `functools.partial` does
+    return await client.loop.run_in_executor(None, func)
+
+async def learn_and_send(channel,input):
+    z=bot.get_response(user_input)
+    await channel.send(z)
+    return
 # trainer = ChatterBotCorpusTrainer(bot)
 
 # trainer.train(
@@ -63,10 +72,10 @@ async def on_ready():
 @client.event
 async def on_message(message):
     global up
+    global channel
     if not message.author.bot:
         if message.content == 'AtWakerちゃん！':
             up=1
-            global channel
             channel=message.channel
             await channel.send("なーに？")
         elif up==1 and message.content == 'AtWakerちゃん、じゃあね！' and channel==message.channel:
@@ -74,9 +83,10 @@ async def on_message(message):
             up=0
         else:
             user_input = message.content
-            bot_response = bot.get_response(user_input)
             if up==1 and channel==message.channel:
-                await channel.send(bot_response)
+                await run_blocking(learn_and_send,channel,user_input)
+            else:
+                await run_blocking(bot.get_response,user_input)
     return
 
 # Botの起動とDiscordサーバーへの接続
