@@ -3,6 +3,8 @@ from chatterbot import response_selection
 from chatterbot import ChatBot
 import discord
 import os
+import typing
+import functools
 
 # Uncomment the following lines to enable verbose logging
 import logging
