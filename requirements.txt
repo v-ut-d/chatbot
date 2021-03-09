@@ -2,5 +2,6 @@ discord.py
 pyyaml
 psycopg2
 spacy==3.0.0
+https://github.com/explosion/spacy-models/releases/download/xx_sent_ud_sm-3.0.0/xx_sent_ud_sm-3.0.0.tar.gz
 git+git://github.com/gunthercox/chatterbot-corpus.git
 git+git://github.com/PolinaBalanyeva/ChatterBot.git
