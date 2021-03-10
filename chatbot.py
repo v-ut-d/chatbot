@@ -86,7 +86,12 @@ async def on_message(message):
             up=0
         else:
             if up==1 and channel==message.channel:
-                user_input=message.content
+                user_input={
+                    "text":message.content,
+                    "conversation":str(message.channel.id),
+                    "in_response_to":await run_blocking(bot.get_latest_response,conversation=str(message.channel.id)),
+                    "persona":str(message.author.id)
+                }
                 await learn_and_send(channel,user_input)
             else:
                 user_input = Statement(
