@@ -85,7 +85,7 @@ async def on_message(message):
             await channel.send("じゃあね！")
             up=0
         else:
-            last_input=await run_blocking(bot.get_latest_response,conversation=str(message.channel.id)).text
+            last_input=await run_blocking(bot.get_latest_response,conversation=str(message.channel.id))
             if up==1 and channel==message.channel:
                 user_input={
                     "text":message.content,
