@@ -85,11 +85,12 @@ async def on_message(message):
             await channel.send("じゃあね！")
             up=0
         else:
+            last_input=await run_blocking(bot.get_latest_response,conversation=str(message.channel.id)).text
             if up==1 and channel==message.channel:
                 user_input={
                     "text":message.content,
                     "conversation":str(message.channel.id),
-                    "in_response_to":await run_blocking(bot.get_latest_response,conversation=str(message.channel.id)).text,
+                    "in_response_to":last_input.text,
                     "persona":str(message.author.id)
                 }
                 await learn_and_send(channel,user_input)
@@ -97,7 +98,7 @@ async def on_message(message):
                 user_input = Statement(
                     text=message.content,
                     conversation=str(message.channel.id),
-                    in_response_to= await run_blocking(bot.get_latest_response,conversation=str(message.channel.id)).text,
+                    in_response_to= last_input.text,
                     persona= str(message.author.id)
                 )
                 await run_blocking(bot.learn_response,user_input)
