@@ -1,5 +1,6 @@
 import chatterbot
 from chatterbot import response_selection
+from chatterbot.ext.sqlalchemy_app.models import Statement
 from chatterbot import ChatBot
 import discord
 import os
@@ -84,12 +85,12 @@ async def on_message(message):
             await channel.send("じゃあね！")
             up=0
         else:
-            user_input = {
-                "text":message.content,
-                "converstation":str(message.channel.id),
-                "in_response_to": await run_blocking(bot.get_latest_response,conversation=str(message.channel.id)),
-                "persona": str(message.author.id),
-            }
+            user_input = Statement(
+                text=message.content,
+                conversation=str(message.channel.id),
+                in_response_to= await run_blocking(bot.get_latest_response,conversation=str(message.channel.id)),
+                persona= str(message.author.id)
+            )
             if up==1 and channel==message.channel:
                 await learn_and_send(channel,user_input)
             else:
