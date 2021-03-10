@@ -88,7 +88,7 @@ async def on_message(message):
             if up==1 and channel==message.channel:
                 await learn_and_send(channel,user_input)
             else:
-                await run_blocking(bot.get_response,user_input)
+                await run_blocking(bot.learn_response,user_input)
     return
 
 # Botの起動とDiscordサーバーへの接続
