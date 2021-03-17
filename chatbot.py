@@ -91,7 +91,7 @@ async def on_message(message):
                 user_input={
                     "text":message.content,
                     "conversation":str(message.channel.id),
-                    "in_response_to":last_input.text if last_input.text else None,
+                    "in_response_to":last_input.text if (not last_input is None) else None,
                     "persona":str(message.author.id)
                 }
                 await learn_and_send(channel,user_input)
@@ -99,7 +99,7 @@ async def on_message(message):
                 user_input = Statement(
                     text=message.content,
                     conversation=str(message.channel.id),
-                    in_response_to= last_input.text if last_input.text else None,
+                    in_response_to= last_input.text if (not last_input is None) else None,
                     persona= str(message.author.id)
                 )
                 await run_blocking(bot.learn_response,user_input)
