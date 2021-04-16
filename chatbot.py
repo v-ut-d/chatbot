@@ -27,7 +27,7 @@ connection = psycopg2.connect(
     port = port
 )
 cur = connection.cursor()
-cur.execute("DELETE FROM statement WHERE created_at < (now() - '10 days'::interval);")
+cur.execute("DELETE FROM statement WHERE created_at < (now() - '5 days'::interval);")
 # import spacy
 # nlp = spacy.load("xx_sent_ud_sm")
 logging.basicConfig(level=logging.INFO)
