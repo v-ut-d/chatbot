@@ -44,13 +44,12 @@ cur.execute("DELETE FROM statement WHERE created_at < (now() - '3 days'::interva
 # nlp = spacy.load("xx_sent_ud_sm")
 logging.basicConfig(level=logging.INFO)
 up=0
-print(0)
 TOKEN = os.environ['TOKEN']
 
 channel=None
 intents = discord.Intents.all()
 client = discord.Client(intents=intents)
-print(1)
+
 # Create a new instance of a ChatBot
 bot = ChatBot(
     'AtWaker',
@@ -66,11 +65,13 @@ bot = ChatBot(
     
 )
 
+print(3)
+
 async def run_blocking(blocking_func: typing.Callable, *args, **kwargs) -> typing.Any:
     """Runs a blocking function in a non-blocking way"""
     func = functools.partial(blocking_func, *args, **kwargs) # `run_in_executor` doesn't support kwargs, `functools.partial` does
     return await client.loop.run_in_executor(None, func)
-
+print(4)
 async def learn_and_send(channel,user_input):
     z=await run_blocking(bot.get_response,user_input)
     await channel.send(z)
@@ -80,12 +81,12 @@ async def learn_and_send(channel,user_input):
 # trainer.train(
 #     "chatterbot.corpus.japanese"
 # )
-
+print(5)
 @client.event
 async def on_ready():
     # 起動したらターミナルにログイン通知が表示される
     print('おはよー！')
-
+print(6)
 @client.event
 async def on_message(message):
     global up
@@ -117,6 +118,6 @@ async def on_message(message):
                 )
                 await run_blocking(bot.learn_response,user_input)
     return
-print(2)
+
 # Botの起動とDiscordサーバーへの接続
 client.run(TOKEN)
