@@ -53,7 +53,7 @@ print(2)
 # Create a new instance of a ChatBot
 bot = ChatBot(
     'AtWaker',
-    storage_adapter='chatterbot.storage.SQLStorageAdapter'
+    storage_adapter='chatterbot.storage.SQLStorageAdapter',
     # logic_adapters=[
     #     {
     #         "import_path": "chatterbot.logic.BestMatch",
@@ -61,7 +61,7 @@ bot = ChatBot(
     #         "response_selection_method": response_selection.get_random_response
     #     }
     # ],
-    # database_uri=os.environ['DATABASE_URL']
+    database_uri=os.environ['DATABASE_URL']
     )
 
 print(3,bot)
