@@ -62,10 +62,9 @@ bot = ChatBot(
         }
     ],
     database_uri=os.environ['DATABASE_URL']
-    
-)
+    )
 
-print(3)
+print(3,bot)
 
 async def run_blocking(blocking_func: typing.Callable, *args, **kwargs) -> typing.Any:
     """Runs a blocking function in a non-blocking way"""
