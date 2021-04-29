@@ -58,7 +58,7 @@ bot = ChatBot(
         {
             "import_path": "chatterbot.logic.BestMatch",
             "statement_comparison_function": "chatterbot.comparisons.SentimentComparison",
-            "response_selection_method": response_selection.get_random_response,
+            "response_selection_method": response_selection.get_random_response
         }
     ],
     database_uri=os.environ['DATABASE_URL']
