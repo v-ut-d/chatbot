@@ -49,7 +49,7 @@ TOKEN = os.environ['TOKEN']
 channel=None
 intents = discord.Intents.all()
 client = discord.Client(intents=intents)
-print(2,os.environ['DATABASE_URL'])
+print(2)
 # Create a new instance of a ChatBot
 bot = ChatBot(
     'AtWaker',
@@ -64,13 +64,11 @@ bot = ChatBot(
     database_uri=result
     )
 
-print(3,bot)
-
 async def run_blocking(blocking_func: typing.Callable, *args, **kwargs) -> typing.Any:
     """Runs a blocking function in a non-blocking way"""
     func = functools.partial(blocking_func, *args, **kwargs) # `run_in_executor` doesn't support kwargs, `functools.partial` does
     return await client.loop.run_in_executor(None, func)
-print(4)
+
 async def learn_and_send(channel,user_input):
     z=await run_blocking(bot.get_response,user_input)
     await channel.send(z)
@@ -80,12 +78,12 @@ async def learn_and_send(channel,user_input):
 # trainer.train(
 #     "chatterbot.corpus.japanese"
 # )
-print(5)
+
 @client.event
 async def on_ready():
     # 起動したらターミナルにログイン通知が表示される
     print('おはよー！')
-print(6)
+
 @client.event
 async def on_message(message):
     global up
