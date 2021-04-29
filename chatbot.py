@@ -51,17 +51,17 @@ intents = discord.Intents.all()
 client = discord.Client(intents=intents)
 print(2)
 # Create a new instance of a ChatBot
-bot = ChatBot(
-    'AtWaker',
-    storage_adapter='chatterbot.storage.SQLStorageAdapter',
-    logic_adapters=[
-        {
-            "import_path": "chatterbot.logic.BestMatch",
-            "statement_comparison_function": "chatterbot.comparisons.SentimentComparison",
-            "response_selection_method": response_selection.get_random_response
-        }
-    ],
-    database_uri=os.environ['DATABASE_URL']
+bot = ChatBot("AtWaker"
+    # 'AtWaker',
+    # storage_adapter='chatterbot.storage.SQLStorageAdapter',
+    # logic_adapters=[
+    #     {
+    #         "import_path": "chatterbot.logic.BestMatch",
+    #         "statement_comparison_function": "chatterbot.comparisons.SentimentComparison",
+    #         "response_selection_method": response_selection.get_random_response
+    #     }
+    # ],
+    # database_uri=os.environ['DATABASE_URL']
     )
 
 print(3,bot)
