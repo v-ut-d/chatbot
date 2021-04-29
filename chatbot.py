@@ -27,7 +27,7 @@ connection = psycopg2.connect(
     port = port
 )
 cur = connection.cursor()
-sql="CREATE TABLE IF NOT EXISTS statement ("
+sql=("CREATE TABLE IF NOT EXISTS statement ("
   +"text varchar(65535) NOT NULL, "
   +"search_text varchar(65535), "
   +"conversation varchar(255), "
@@ -37,7 +37,7 @@ sql="CREATE TABLE IF NOT EXISTS statement ("
   +"search_in_response_to varchar(65535), "
   +"persona varchar(255), "
   +"PRIMARY KEY (text) "
-  +")"
+  +")")
 cur.execute(sql)
 cur.execute("DELETE FROM statement WHERE created_at < (now() - '3 days'::interval);")
 # import spacy
