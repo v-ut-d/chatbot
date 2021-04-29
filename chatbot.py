@@ -40,7 +40,8 @@ sql=("CREATE TABLE IF NOT EXISTS statement ("
   +");")
 cur.execute(sql)
 cur.execute("DELETE FROM statement WHERE created_at < (now() - '3 days'::interval);")
-# import spacy
+cur.close()
+connection.close()# import spacy
 # nlp = spacy.load("xx_sent_ud_sm")
 logging.basicConfig(level=logging.INFO)
 up=0
@@ -61,7 +62,7 @@ bot = ChatBot(
             "response_selection_method": response_selection.get_random_response
         }
     ],
-    database_uri=result
+    database_uri=os.environ['DATABASE_URL']
     )
 
 async def run_blocking(blocking_func: typing.Callable, *args, **kwargs) -> typing.Any:
