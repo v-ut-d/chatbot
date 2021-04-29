@@ -49,7 +49,7 @@ TOKEN = os.environ['TOKEN']
 channel=None
 intents = discord.Intents.all()
 client = discord.Client(intents=intents)
-
+print(2)
 # Create a new instance of a ChatBot
 bot = ChatBot(
     'AtWaker',
