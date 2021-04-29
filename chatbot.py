@@ -61,7 +61,7 @@ bot = ChatBot(
             "response_selection_method": response_selection.get_random_response
         }
     ],
-    database_uri=os.environ['DATABASE_URL']
+    database_uri=result
     )
 
 print(3,bot)
