@@ -51,9 +51,9 @@ intents = discord.Intents.all()
 client = discord.Client(intents=intents)
 print(2)
 # Create a new instance of a ChatBot
-bot = ChatBot("AtWaker"
-    # 'AtWaker',
-    # storage_adapter='chatterbot.storage.SQLStorageAdapter',
+bot = ChatBot(
+    'AtWaker',
+    storage_adapter='chatterbot.storage.SQLStorageAdapter'
     # logic_adapters=[
     #     {
     #         "import_path": "chatterbot.logic.BestMatch",
