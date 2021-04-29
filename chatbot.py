@@ -27,7 +27,6 @@ connection = psycopg2.connect(
     port = port
 )
 cur = connection.cursor()
-print("before")
 sql=("CREATE TABLE IF NOT EXISTS statement ("
   +"text varchar(65535) NOT NULL, "
   +"search_text varchar(65535), "
@@ -40,18 +39,18 @@ sql=("CREATE TABLE IF NOT EXISTS statement ("
   +"PRIMARY KEY (text) "
   +")")
 cur.execute(sql)
-print("after")
 cur.execute("DELETE FROM statement WHERE created_at < (now() - '3 days'::interval);")
 # import spacy
 # nlp = spacy.load("xx_sent_ud_sm")
 logging.basicConfig(level=logging.INFO)
 up=0
+print(0)
 TOKEN = os.environ['TOKEN']
 
 channel=None
 intents = discord.Intents.all()
 client = discord.Client(intents=intents)
-
+print(1)
 # Create a new instance of a ChatBot
 bot = ChatBot(
     'AtWaker',
@@ -118,6 +117,6 @@ async def on_message(message):
                 )
                 await run_blocking(bot.learn_response,user_input)
     return
-
+print(2)
 # Botの起動とDiscordサーバーへの接続
 client.run(TOKEN)
