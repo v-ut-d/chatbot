@@ -37,7 +37,7 @@ sql=("CREATE TABLE IF NOT EXISTS statement ("
   +"search_in_response_to varchar(65535), "
   +"persona varchar(255), "
   +"PRIMARY KEY (text) "
-  +")")
+  +");")
 cur.execute(sql)
 cur.execute("DELETE FROM statement WHERE created_at < (now() - '3 days'::interval);")
 # import spacy
