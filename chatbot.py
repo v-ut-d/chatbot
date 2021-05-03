@@ -101,7 +101,8 @@ async def on_message(message):
             up=1
             channel=message.channel
             await channel.send("なーに？")
-        elif up==1 and message.content == 'AtWakerちゃん、じゃあね！' and channel==message.channel:
+        elif (up==1 and 'AtWakerちゃん' in message.content 
+             and 'ばいばい' in message.content and channel==message.channel):
             await channel.send("じゃあね！")
             up=0
         elif len(message.content)>0:
