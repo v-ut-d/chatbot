@@ -45,6 +45,7 @@ connection.close()# import spacy
 # nlp = spacy.load("xx_sent_ud_sm")
 logging.basicConfig(level=logging.INFO)
 up=0
+istyping=0
 TOKEN = os.environ['TOKEN']
 
 channel=None
@@ -106,7 +107,13 @@ async def on_message(message):
                     "in_response_to":last_input.text if (not last_input is None) else None,
                     "persona":str(message.author.id)
                 }
+                global istyping
+                istyping+=1
+                typ = channel.typing()
                 await learn_and_send(channel,user_input)
+                istyping-=1
+                if istyping==0:
+                    typ.close()
             else:
                 user_input = Statement(
                     text=message.content,
