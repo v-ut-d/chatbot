@@ -72,7 +72,13 @@ async def run_blocking(blocking_func: typing.Callable, *args, **kwargs) -> typin
     return await client.loop.run_in_executor(None, func)
 
 async def learn_and_send(channel,user_input):
-    z=await run_blocking(bot.get_response,user_input)
+    global istyping
+    istyping+=1
+    async with channel.typing():
+        z=await run_blocking(bot.get_response,user_input)
+        istyping-=1
+    if istyping!=0:
+        channel.typing()
     await channel.send(z)
     return
 # trainer = ChatterBotCorpusTrainer(bot)
@@ -107,13 +113,7 @@ async def on_message(message):
                     "in_response_to":last_input.text if (not last_input is None) else None,
                     "persona":str(message.author.id)
                 }
-                global istyping
-                istyping+=1
-                typ = channel.typing()
                 await learn_and_send(channel,user_input)
-                istyping-=1
-                if istyping==0:
-                    typ.close()
             else:
                 user_input = Statement(
                     text=message.content,
