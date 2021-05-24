@@ -81,7 +81,7 @@ async def learn_and_send(channel,user_input):
         channel.typing()
     mentions=re.findall("<@.+>",z.text)
     for m in mentions:
-        mid=int(re.sub("[<@!&>","",m))
+        mid=int(re.sub("[<@!&>]","",m))
         if re.search("&",m):
             if channel.guild.get_role(mid):
                 nm=channel.guild.get_role(mid).name
