@@ -79,7 +79,20 @@ async def learn_and_send(channel,user_input):
         istyping-=1
     if istyping!=0:
         channel.typing()
-    z.text=re.sub("<@.+>","@.someone",z.text )
+    mentions=re.findall("<@.+>",z.text)
+    for m in mentions:
+        mid=int(re.sub("[<@!&>","",m))
+        if re.search("&",m):
+            if channel.guild.get_role(mid):
+                nm=channel.guild.get_role(mid).name
+            else:
+                nm="deleted_role"
+        else:
+            if channel.guild.get_member(mid):
+                nm=channel.guild.get_member(mid).display_name
+            else:
+                nm="deleted_member"
+        z.text=re.sub(m,"@."+nm,z.text)
     await channel.send(z)
     return
 # trainer = ChatterBotCorpusTrainer(bot)
