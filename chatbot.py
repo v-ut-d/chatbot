@@ -4,6 +4,7 @@ from chatterbot.ext.sqlalchemy_app.models import Statement
 from chatterbot import ChatBot
 import discord
 import os
+import re
 import typing
 import functools
 
@@ -79,6 +80,7 @@ async def learn_and_send(channel,user_input):
         istyping-=1
     if istyping!=0:
         channel.typing()
+    z=re.sub("<@.+>","@.someone",z )
     await channel.send(z)
     return
 # trainer = ChatterBotCorpusTrainer(bot)
