@@ -79,7 +79,7 @@ async def learn_and_send(channel,user_input):
         istyping-=1
     if istyping!=0:
         channel.typing()
-    z=re.sub("<@.+>","@.someone",z )
+    z.text=re.sub("<@.+>","@.someone",z.text )
     await channel.send(z)
     return
 # trainer = ChatterBotCorpusTrainer(bot)
