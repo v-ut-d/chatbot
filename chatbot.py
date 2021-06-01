@@ -40,7 +40,13 @@ sql=("CREATE TABLE IF NOT EXISTS statement ("
   +"PRIMARY KEY (text) "
   +");")
 cur.execute(sql)
+cur.execute("SELECT COUNT(*) FROM statement;")
+for row in cur:
+    print(row)
 cur.execute("DELETE FROM statement WHERE created_at < (now() - '3 days'::interval);")
+cur.execute("SELECT COUNT(*) FROM statement;")
+for row in cur:
+    print(row)
 cur.close()
 connection.close()# import spacy
 # nlp = spacy.load("xx_sent_ud_sm")
