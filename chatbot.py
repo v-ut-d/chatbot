@@ -110,6 +110,7 @@ async def on_ready():
     for row in cur:
         print(row)
     cur.close()
+    connection.commit()
     connection.close()
     # 起動したらターミナルにログイン通知が表示される
     print('おはよー！')
