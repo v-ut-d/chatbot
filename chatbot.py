@@ -27,28 +27,8 @@ connection = psycopg2.connect(
     host = hostname,
     port = port
 )
-cur = connection.cursor()
-sql=("CREATE TABLE IF NOT EXISTS statement ("
-  +"text varchar(65535) NOT NULL, "
-  +"search_text varchar(65535), "
-  +"conversation varchar(255), "
-  +"created_at date, "
-  +"tags varchar(255), "
-  +"in_response_to varchar(65535), "
-  +"search_in_response_to varchar(65535), "
-  +"persona varchar(255), "
-  +"PRIMARY KEY (text) "
-  +");")
-cur.execute(sql)
-cur.execute("SELECT COUNT(*) FROM statement;")
-for row in cur:
-    print(row)
-cur.execute("DELETE FROM statement WHERE created_at < (now() - '3 days'::interval);")
-cur.execute("SELECT COUNT(*) FROM statement;")
-for row in cur:
-    print(row)
-cur.close()
-connection.close()# import spacy
+
+# import spacy
 # nlp = spacy.load("xx_sent_ud_sm")
 logging.basicConfig(level=logging.INFO)
 up=0
@@ -109,6 +89,28 @@ async def learn_and_send(channel,user_input):
 
 @client.event
 async def on_ready():
+    cur = connection.cursor()
+    sql=("CREATE TABLE IF NOT EXISTS statement ("
+    +"text varchar(65535) NOT NULL, "
+    +"search_text varchar(65535), "
+    +"conversation varchar(255), "
+    +"created_at date, "
+    +"tags varchar(255), "
+    +"in_response_to varchar(65535), "
+    +"search_in_response_to varchar(65535), "
+    +"persona varchar(255), "
+    +"PRIMARY KEY (text) "
+    +");")
+    cur.execute(sql)
+    cur.execute("SELECT COUNT(*) FROM statement;")
+    for row in cur:
+        print(row)
+    cur.execute("DELETE FROM statement WHERE created_at < (now() - '10 days'::interval);")
+    cur.execute("SELECT COUNT(*) FROM statement;")
+    for row in cur:
+        print(row)
+    cur.close()
+    connection.close()
     # 起動したらターミナルにログイン通知が表示される
     print('おはよー！')
 
