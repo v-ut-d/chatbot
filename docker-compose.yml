@@ -1,0 +1,25 @@
+version: '3'
+
+volumes:
+  postgres-volume:
+    driver: local
+
+services:
+  chatbot:
+    build: .
+    environment:
+      - TOKEN
+      - DATABASE_URL
+    depends_on:
+      - postgres
+  postgres:
+    image: postgres:14.5
+    volumes:
+      - postgres-volume:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=chatbot-password
+      - POSTGRES_USER=chatbot
+      - POSTGRES_DB=chatbot
+    command: postgres -c log_min_messages=LOG
+    ports:
+      - "5432:5432"

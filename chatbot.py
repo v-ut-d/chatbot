@@ -1,4 +1,3 @@
-import chatterbot
 from chatterbot import response_selection
 from chatterbot.ext.sqlalchemy_app.models import Statement
 from chatterbot import ChatBot
@@ -10,7 +9,8 @@ import functools
 
 # Uncomment the following lines to enable verbose logging
 import logging
-from chatterbot.trainers import ChatterBotCorpusTrainer
+
+# from chatterbot.trainers import ChatterBotCorpusTrainer
 import psycopg2
 from urllib.parse import urlparse
 
