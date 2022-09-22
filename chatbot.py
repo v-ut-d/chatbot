@@ -1,6 +1,7 @@
 from chatterbot import response_selection
-from chatterbot.ext.sqlalchemy_app.models import Statement
 from chatterbot import ChatBot
+from chatterbot.tagging import LowercaseTagger
+from chatterbot.ext.sqlalchemy_app.models import Statement
 import discord
 import os
 import re
@@ -49,6 +50,7 @@ bot = ChatBot(
             "response_selection_method": response_selection.get_random_response
         }
     ],
+    tagger=LowercaseTagger,
     database_uri=os.environ['DATABASE_URL']
     )
 
