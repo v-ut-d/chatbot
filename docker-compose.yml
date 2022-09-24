@@ -6,7 +6,7 @@ volumes:
 
 services:
   chatbot:
-    build: .
+    image: ghcr.io/v-ut-d/chatbot:latest
     environment:
       - TOKEN
       - DATABASE_URL
